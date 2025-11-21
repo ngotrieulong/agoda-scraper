@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  scraper:
+    build: .
+    image: agoda-scraper
+    volumes:
+      - ./data:/app/data
+      - ./.env:/app/.env
+      - ./agoda_reviews.json:/app/agoda_reviews.json
+      - ./scraper.log:/app/scraper.log
+    environment:
+      - AGENTQL_API_KEY=${AGENTQL_API_KEY}
+    # Example command to run the scraper
+    # You can override this command when running docker-compose run scraper ...
+    command: ["--max-hotels", "3", "--reviews", "20"]
