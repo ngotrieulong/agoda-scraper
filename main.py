@@ -1,5 +1,6 @@
 import argparse
 import logging
+import os
 from scraper import AgodaScraper
 from utils import setup_logging, save_data
 
@@ -15,9 +16,14 @@ def main():
                        help="Search URL")
     parser.add_argument("--mode", choices=["multiple", "single"], default="multiple", help="Scrape mode")
     parser.add_argument("--single-url", type=str, help="URL for single hotel mode")
+    parser.add_argument("--output", type=str, default="data/agoda_reviews.json", help="Output .json file path")
     
     args = parser.parse_args()
+    output_path = args.output
 
+    # Ensure output directory exists
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    
     scraper = AgodaScraper(headless=args.headless, logger=logger)
     try:
         scraper.start()
@@ -27,9 +33,10 @@ def main():
                 logger.error("Single mode requires --single-url")
                 return
             data = scraper.scrape_hotel(args.single_url, max_reviews=args.reviews)
-            save_data([data], "agoda_reviews.json", logger)
+            save_data([data], output_path, logger)
         else:
-            scraper.scrape_multiple(args.url, max_hotels=args.max_hotels, reviews_per_hotel=args.reviews)
+            reviews = scraper.scrape_multiple(args.url, max_hotels=args.max_hotels, reviews_per_hotel=args.reviews)
+            save_data(reviews, output_path, logger)
             
     except Exception as e:
         logger.critical(f"Unhandled exception: {e}")
