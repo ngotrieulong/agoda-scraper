@@ -45,6 +45,13 @@ A modular and Dockerized Python scraper for Agoda hotel reviews using Playwright
       --max-hotels 3 --reviews 20
     ```
 
+    **Command Explanation:**
+    *   `--rm`: Automatically remove the container when it exits (keeps your system clean).
+    *   `-v $(pwd)/data:/app/data`: Mounts your local `data` folder to `/app/data` inside the container, so scraped files are saved to your machine.
+    *   `--env-file .env`: Loads environment variables (API keys, credentials) from your local `.env` file.
+    *   `longnt70/agoda-scraper:latest`: The Docker image to run.
+    *   `--max-hotels 3 --reviews 20`: Arguments passed to the scraper (scrape 3 hotels, 20 reviews each).
+
 ### Running on a New Machine
 
 If you have pulled the image on a fresh machine, follow these steps:
