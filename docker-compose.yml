@@ -13,4 +13,4 @@ services:
       - AGENTQL_API_KEY=${AGENTQL_API_KEY}
     # Example command to run the scraper
     # You can override this command when running docker-compose run scraper ...
-    command: ["--max-hotels", "3", "--reviews", "20"]
+    command: ["--max-hotels", "3", "--reviews", "20", "--headless"]

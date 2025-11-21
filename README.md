@@ -42,7 +42,7 @@ A modular and Dockerized Python scraper for Agoda hotel reviews using Playwright
       -v $(pwd)/data:/app/data \
       --env-file .env \
       longnt70/agoda-scraper:latest \
-      --max-hotels 3 --reviews 20
+      --max-hotels 3 --reviews 20 --headless
     ```
 
     **Command Explanation:**
@@ -76,7 +76,8 @@ If you have pulled the image on a fresh machine, follow these steps:
     docker run --rm \
       -v $(pwd)/data:/app/data \
       --env-file .env \
-      longnt70/agoda-scraper:latest
+      longnt70/agoda-scraper:latest \
+      --headless
     ```
 
 ### Local Execution
