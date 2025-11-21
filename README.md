@@ -45,6 +45,30 @@ A modular and Dockerized Python scraper for Agoda hotel reviews using Playwright
       --max-hotels 3 --reviews 20
     ```
 
+### Running on a New Machine
+
+If you have pulled the image on a fresh machine, follow these steps:
+
+1.  **Create a project directory:**
+    ```bash
+    mkdir my-scraper
+    cd my-scraper
+    ```
+
+2.  **Create a `.env` file:**
+    Add your API key to a new file named `.env`:
+    ```bash
+    echo "AGENTQL_API_KEY=your_actual_api_key_here" > .env
+    ```
+
+3.  **Run the scraper:**
+    ```bash
+    docker run --rm \
+      -v $(pwd)/data:/app/data \
+      --env-file .env \
+      longnt70/agoda-scraper:latest
+    ```
+
 ### Local Execution
 
 1.  **Install dependencies:**
