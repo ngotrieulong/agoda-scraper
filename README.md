@@ -59,6 +59,9 @@ If you have pulled the image on a fresh machine, follow these steps:
     Add your API key to a new file named `.env`:
     ```bash
     echo "AGENTQL_API_KEY=your_actual_api_key_here" > .env
+    # Add Agoda account credentials (username and password)
+    echo "AGODA_USERNAME=your_username" >> .env
+    echo "AGODA_PASSWORD=your_password" >> .env
     ```
 
 3.  **Run the scraper:**
