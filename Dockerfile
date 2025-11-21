@@ -18,10 +18,14 @@ COPY requirement.txt .
 RUN pip install --no-cache-dir -r requirement.txt
 
 # Install Playwright browsers and dependencies
-RUN playwright install --with-deps chromium
+RUN pip install playwright && playwright install --with-deps chromium
 
 # Copy project files
 COPY . .
 
+# Create output directory for results
+RUN mkdir -p /app/data
+
 # Entry point
 ENTRYPOINT ["python", "main.py"]
+
